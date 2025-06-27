@@ -1,0 +1,29 @@
+SELECT 
+    v.SaleID,
+    p.PropertyType as TipoPropiedad,
+    p.Size_m2,
+    p.Bedrooms as Habitacion,
+    p.Bathrooms as Banho,
+    p.ListPriceUSD as ListaPrecio,
+    p.AvailabilityStatus EstadoDisponible,
+    c.FirstName as PrimerNombre,
+    c.LastName as Apellido,
+    c.Email,
+    c.Region,
+    co.BrokerName as NombreBroker,
+    co.Region as RegionBroker,
+    co.Email as EmailBroker,
+    v.SaleDate as FechaVenta,
+    v.SalePriceUSD  as PrecioVentaDolares
+    
+FROM 
+    fact_ventas v
+JOIN 
+    dim_propiedad p ON v.PropertyID = p.PropertyID
+JOIN 
+    dim_clientes c ON v.ClientID = c.ClientID
+JOIN 
+    dim_corredor co ON v.BrokerID = co.BrokerID
+
+ORDER BY 
+    v.SaleID

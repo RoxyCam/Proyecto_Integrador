@@ -1,0 +1,15 @@
+SELECT 
+    l.LeadID,
+    c.Channel,
+    c.CampaignName as NombreCampanha,
+    c.StartDate as FechaInicial,
+    c.BudgetUSD as BudgetDolar,
+    l.LeadDate  as FechaLead,
+    l.LeadSource  as OrigenLead
+
+FROM 
+    fact_leads l
+JOIN  dim_campanha c ON l.CampaignID = c.CampaignID
+
+ORDER BY 
+    l.LeadID
